@@ -25,25 +25,35 @@ Part A:
 
 1.  How good was the machine learning model we developed in the guiding practice? Would you be comfortable using it to code more conversations? What if you read about someone using such a model as a reviewer of research? Please add your thoughts and reflections following the bullet point below.
 
--   
+    (1) The model is good!
+
+    (2) Yes, as a content expert, I can easily use the codes to code more conversation!
+
+    (3) That's would be great! I would like to see researchers applying the model to explore some other research questions. I also would like to see someone improve the models by modifying the codes or adding more variables.
 
 2.  How might the model be improved? Share any ideas you have at this time below:
 
--   
+    (1) I would come out more codes deep into NGSS content rater than two to categorize the talk deeply.
+
+    (2) I would like to explore more variables/information from the raw data and see if the accuracy can be improved.
 
 Part B: Use the institutional library (e.g. [NCSU Library](https://www.lib.ncsu.edu/#articles)), [Google Scholar](https://scholar.google.com/) or search engine to locate a research article, presentation, or resource that applies machine learning to an educational context aligned with your research interests. More specifically, **locate a machine learning study that involve making predictions**.
 
 1.  Provide an APA citation for your selected study.
 
-    -   
+    -   Liu, B., Xing, W., Zeng, Y., & Wu, Y. (2022). Linking cognitive processes and learning outcomes: The influence of cognitive presence on learning performance in MOOCs. British Journal of Educational Technology.
 
 2.  What research questions were the authors of this study trying to address and why did they consider these questions important?
 
-    -   
+    -   How do students' cognitive presence influence their learning performance in MOOCs?
 
 3.  What were the results of these analyses?
 
-    -   
+    -   This study built a highly predictive classification model using a machine learning algorithm to automatically identify the phases of cognitive presence in MOOC forum posts.
+
+    -   Multilevel modelling was used to quantify the influence of learners' cognitive presence on their learning performance.
+
+    -   The results showed that different phases of cognitive presence influenced stu- dents' learning differently.
 
 ### Part II: Data Product
 
@@ -70,13 +80,16 @@ final_fit$.predictions[[1]] %>%
 
 Please interpret the above confusion matrix using [these guidelines](https://towardsdatascience.com/understanding-confusion-matrix-a9ad42dcfd62) in terms of the true positive, true negative, false positive, and false negative rates. After each of the following (i.e., "True positive"), add both the *number* and percentage of observations. For instance, if there were 100 true positives out of a total of 400 data points, please write: 100 (25%).
 
-**True positive**:
+759
 
-**True negative**:
 
-**False positive**:
+**True positive**:260，34.3%
 
-**False negative**:
+**True negative**:402，52.9%
+
+**False positive**: 60，7.9%
+
+**False negative**: 37，4.9%
 
 You can read more about interpreting these [here](https://bradleyboehmke.github.io/HOML/process.html#classification-models) in terms of the specificity, sensitivity, precision, and recall, four statistics based on the information in the confusion matrix.
 
