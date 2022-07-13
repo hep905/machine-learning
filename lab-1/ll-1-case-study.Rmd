@@ -1,6 +1,6 @@
 ---
 title: 'Learning Lab 1 Case Study'
-author: ""
+author: "Peng He"
 date: "`r format(Sys.Date(),'%B %e, %Y')`"
 output:
   html_document:
@@ -12,7 +12,6 @@ output:
 editor_options:
   markdown:
     wrap: 72
-bibliography: lit/references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -100,12 +99,13 @@ Note its dimensions --- especially how many rows it has. Add a few
 dashes after the chunk with your observations.
 
 ```{r}
-
+glimpse(d)
 ```
 
 *Observations*:
 
--   
+-   I notice the summary of the data, such as the rows, columns,
+    mean_favarite_count
 
 \*What other variables might we include?\*\* This is a great question to
 be asking - surely, including just the four variables we have cannot be
@@ -163,6 +163,10 @@ Run the following code to split the data:
 set.seed(20220712)
 train_test_split <- initial_split(d, prop = .80)
 data_train <- training(train_test_split)
+
+train_test_split
+
+data_train
 ```
 
 Go ahead and type `data_train` and `d` into the console (in steps) to
@@ -172,7 +176,9 @@ in the larger data. Do that in the chunk below:
 [Your Turn]{style="color: green;"} ⤵
 
 ```{r}
+data_train
 
+d
 ```
 
 ## Step 2: Engineer features and write down the recipe
@@ -255,6 +261,8 @@ Finally, we'll fit our model.
 
 ```{r, warning = FALSE}
 fitted_model <- fit(my_wf, data = data_train)
+
+fitted_model
 ```
 
 Finally, we'll use the `last_fit` function, which is the key here: note
@@ -274,6 +282,8 @@ Type `final_fit` below; this is the final, fitted model---one that can
 be interpreted further in the next step!
 
 ```{r}
+
+final_fit
 ```
 
 You may see a message/warning above or when you examine `final_fit`; you
@@ -325,7 +335,7 @@ Let's interpret the above. If the value of `correct` is `TRUE` when the
 predicted and known code are the same, what does the `percent` column
 tell us? Add one or more notes to the dashes below:
 
--   
+-   It tells us the model can predict 86.95% correctly.
 
 A short-cut to the above is below:
 
@@ -336,9 +346,9 @@ final_fit %>%
 
 **Observations**
 
--   
+-   the accuracy is 86.95%
 
--   
+-   the roc_auc is 93.74%
 
 That's it for now; the core parts of machine learning are used in the
 above steps you took; what we'll do after this leaning lab only adds
