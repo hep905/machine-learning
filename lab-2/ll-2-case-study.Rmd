@@ -1,6 +1,6 @@
 ---
 title: 'Learning Lab 2 Case Study: Feature Engineering'
-author: ""
+author: "Peng He"
 date: "`r format(Sys.Date(),'%B %e, %Y')`"
 output:
   html_document:
@@ -12,7 +12,6 @@ output:
 editor_options:
   markdown:
     wrap: 72
-bibliography: lit/references.bib
 ---
 
 ```{r setup, include=FALSE}
