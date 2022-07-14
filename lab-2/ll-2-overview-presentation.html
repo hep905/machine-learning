@@ -4,7 +4,7 @@
     <title>Machine Learning Learning Lab 2: Feature Engineering</title>
     <meta charset="utf-8" />
     <meta name="author" content="Dr. Joshua Rosenberg" />
-    <meta name="date" content="2022-07-13" />
+    <meta name="date" content="2022-07-14" />
     <script src="libs/header-attrs-2.14/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
@@ -38,7 +38,7 @@ class: clear, title-slide, inverse, center, top, middle
 # Machine Learning Learning Lab 2: Feature Engineering
 ----
 ### **Dr. Joshua Rosenberg**
-### July 13, 2022
+### July 14, 2022
 
 ---
 
@@ -143,7 +143,7 @@ Here's a time stamp:
 
 
 ```
-## [1] "2022-07-13 10:59:43 EDT"
+## [1] "2022-07-14 10:06:52 EDT"
 ```
 
 **How could this variable be used as a predictor variable?**
@@ -273,18 +273,18 @@ Say we have a data set, `d`, with 100 observations (rows or data points) with _k
 
 ```
 ## # A tibble: 100 × 3
-##       id   var_a  var_b
-##    &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1     1 0.372   0.247 
-##  2     2 0.485   0.598 
-##  3     3 0.242   0.812 
-##  4     4 0.840   0.966 
-##  5     5 0.00583 0.251 
-##  6     6 0.216   0.958 
-##  7     7 0.0200  0.885 
-##  8     8 0.115   0.578 
-##  9     9 0.0388  0.245 
-## 10    10 0.853   0.0236
+##       id  var_a  var_b
+##    &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1     1 0.556  0.346 
+##  2     2 0.878  0.0745
+##  3     3 0.613  0.0343
+##  4     4 0.475  0.255 
+##  5     5 0.951  0.333 
+##  6     6 0.623  0.429 
+##  7     7 0.0593 0.394 
+##  8     8 0.697  0.369 
+##  9     9 0.561  0.283 
+## 10    10 0.735  0.215 
 ## # … with 90 more rows
 ```
 
@@ -297,20 +297,20 @@ Say we have a data set, `d`, with 100 observations (rows or data points) with _k
 
 ```
 ## # A tibble: 3 × 3
-##      id var_a var_b
-##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1 0.372 0.247
-## 2     2 0.485 0.598
-## 3     3 0.242 0.812
+##      id var_a  var_b
+##   &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1 0.556 0.346 
+## 2     2 0.878 0.0745
+## 3     3 0.613 0.0343
 ```
 
 ```
 ## # A tibble: 3 × 3
-##      id  var_a  var_b
-##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1    91 0.359  0.471 
-## 2    92 0.0370 0.0229
-## 3    93 0.186  0.555
+##      id var_a var_b
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1    91 0.542 0.270
+## 2    92 0.501 0.657
+## 3    93 0.348 0.701
 ```
 
 ---
@@ -320,20 +320,20 @@ Say we have a data set, `d`, with 100 observations (rows or data points) with _k
 
 ```
 ## # A tibble: 3 × 3
-##      id var_a var_b
-##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1 0.372 0.247
-## 2     2 0.485 0.598
-## 3     3 0.242 0.812
+##      id var_a  var_b
+##   &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1 0.556 0.346 
+## 2     2 0.878 0.0745
+## 3     3 0.613 0.0343
 ```
 
 ```
 ## # A tibble: 3 × 3
-##      id var_a var_b
-##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1    81 0.394 0.967
-## 2    82 0.811 0.501
-## 3    83 0.308 0.721
+##      id  var_a var_b
+##   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1    81 0.0562 0.504
+## 2    82 0.766  0.695
+## 3    83 0.0581 0.366
 ```
 
 ---
@@ -343,20 +343,20 @@ Say we have a data set, `d`, with 100 observations (rows or data points) with _k
 
 ```
 ## # A tibble: 3 × 3
-##      id var_a var_b
-##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1 0.372 0.247
-## 2     2 0.485 0.598
-## 3     3 0.242 0.812
+##      id var_a  var_b
+##   &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1 0.556 0.346 
+## 2     2 0.878 0.0745
+## 3     3 0.613 0.0343
 ```
 
 ```
 ## # A tibble: 3 × 3
-##      id  var_a var_b
-##   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1    71 0.0536 0.571
-## 2    72 0.882  0.332
-## 3    73 0.749  0.502
+##      id  var_a  var_b
+##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1    71 0.0533 0.233 
+## 2    72 0.376  0.0198
+## 3    73 0.493  0.195
 ```
 
 ... through the tenth resampling, after which the fit measures are simply summed
