@@ -23,29 +23,38 @@ Part A:
 
 1.  Like we considered after LL1, how good was the machine learning model we developed in the case study? Stepping back, how successful is this as a predictive model of students' success in the class using data collected through roughly the first one month of the class? How might this model be used in practice?
 
--   
+-   the machine learning model in the case study is poor. 
+-   the machine learning can only predict 20% accuracy of students' success.
+-   the machine can not be used in practice because of the low accuracy.
 
 3.  Would you be comfortable using this? What if you read about someone using such a model as a reviewer of research. Please add your thoughts and reflections following the bullet point below.
 
--   
+-   If I were a teacher, I'm not comfortable to use this model.
+-   I mean I would like to see other scholars to improve the accuracy of this model.
 
 3.  How might the model be improved? Share any ideas you have at this time below:
 
--   
+-   we can add more variables in the predictive models to increase the accuracy.
 
 Part B: Again, use the institutional library (e.g. [NCSU Library](https://www.lib.ncsu.edu/#articles)), [Google Scholar](https://scholar.google.com/) or search engine to locate a research article, presentation, or resource that applies machine learning to an educational context aligned with your research interests. More specifically, **locate a machine learning study that involve making predictions -- and, ideally, one that involved in some way engineering features from data**.
 
 1.  Provide an APA citation for your selected study.
 
-    -   
+    -   Wu, J. Y., Hsiao, Y. C., & Nian, M. W. (2020). Using supervised machine learning on large-scale online forums to classify course-related Facebook messages in predicting learning achievement within the personal learning environment. Interactive Learning Environments, 28(1), 65-80.
 
 2.  What research questions were the authors of this study trying to address and why did they consider these questions important?
 
-    -   
+    -   RQ1: How well does each ML algorithm perform in classifying the two online forum posts?
+    -   RQ2: How well does each ML algorithm perform in classifying the Facebook statistics posts in comparison to the relevance and cognitive level coding by human?
+    -   RQ3: What is the predictive validity of the ML classification on students’ final grade in the advanced statistics course?
+    
+    The availability of digital data brings unparalleled potential to examine people’s learning from different facets and gives rise to interests in the development and use of tools and techniques to support Learning Analytics (LA). Online discussion messages are typical digital data that may convey information for learning diagnosis (Lu & Jeng, 2006). Online communities and discussion boards premised on social media are widely applied in education as an extended platform for students’ seamless learning (Thoms & Eryilmaz, 2015). 
 
 3.  What were the results of these analyses?
 
-    -   
+    -   The regression analysis in Model 1 with the frequency of unclassified message explained 38.80% (F(2,20) = 6.33 with p = .007, Adj.R2 = 32.70%) of the variance for students’ final course grade, controlling for gender. 
+    -    The regression model with the frequencies of machine classified mess- ages explained 49.60% (F(5,18) = 3.55 with p = .021, Adj.R2 = 35.70%) of the variance for students’ final course grade.
+    -   Students with more messages endorsed by two or more ML algorithms as statistics-related had higher final course grades. Students who failed the course also had significantly fewer messages endorsed by all three ML algorithms than those who passed. 
 
 ### Part II: Data Product
 
@@ -67,10 +76,6 @@ data_with_final_grade <- data_with_final_grade %>%
 
 d <- left_join(d, data_with_final_grade, by = c("student_id", "course_id"))
 
-d %>% View()
-d
-names(d)
-
 #if have 1000 rows, then use this:
 d <- d %>% distinct(student_id, course_id, .keep_all = TRUE)
 
@@ -80,7 +85,7 @@ train_test_split <- initial_split(d, prop = .80)
 
 data_train <- training(train_test_split)
 
-kfcv <- vfold_cv(data_train, v = 20) # this differentiates this from what we did before
+kfcv <- vfold_cv(data_train, v = 10) # this differentiates this from what we did before
 
 ```
 
@@ -89,7 +94,7 @@ Here's where you can add a new feature engineering step. For the sake of this ba
 ```{r}
 my_rec <- recipe(final_grade ~ int +uv + tv +
                      student_id + course_id +
-                     sum_discussion_posts + sum_n_words + subject, 
+                     sum_discussion_posts + sum_n_words + subject + percomp + points_earned, 
                  data = data_train) %>% 
     update_role(student_id, course_id, new_role = "ID variables") %>% # this can bee any string
     step_normalize(all_numeric_predictors()) %>% # standardizes numeric variables
@@ -97,6 +102,8 @@ my_rec <- recipe(final_grade ~ int +uv + tv +
     step_novel(all_nominal_predictors()) %>% # add a musing label for factors
     step_dummy(all_nominal_predictors()) %>%  # dummy code all factor variables
     step_impute_knn(all_predictors()) # impute missing data for all predictor variables
+
+my_rec
 ```
 
 Run the remaining steps.
@@ -125,7 +132,13 @@ fitted_model_resamples %>%
 
 Did that feature engineering make any difference compared to the mean predictive accuracy you found in the case study? Add a few notes below:
 
--   
+-   Yes, the accuracy of the current feature engineering is 20.4%, which is larger than the accuracy in the case study (8.89%). 
+
+```{r}
+collect_predictions(fitted_model_resamples) %>% 
+    ggplot(aes(x = .pred, y = final_grade)) +
+    geom_point()
+```
 
 ### Knit & Submit
 
